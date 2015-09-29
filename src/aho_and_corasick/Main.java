@@ -1,18 +1,18 @@
 package aho_and_corasick;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Main {
 
 	public static void main(String[] args) {
-		BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			System.out.print(bufferedreader.readLine());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<String> arrayList = new ArrayList<String>();
+		arrayList.add("coucou");
+		arrayList.add("cocu");
+		Pretreatement pretreatement = new Pretreatement(arrayList);
+		pretreatement.makeState();
+		ArrayList<State> states = pretreatement.getStates();
+		for (int i = 0; i < states.size(); i++) {
+			System.out.println(states.get(i).getId().toString() + " " + states.get(i).getPrefix());
 		}
 	}
 
