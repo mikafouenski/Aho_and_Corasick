@@ -43,6 +43,13 @@ public class Pretreatement {
 		}
 		return max;
 	}
+	
+	public void  makeTree() {
+		this.states.get(0).setFather(null);
+		for (int i = 0; i < this.states.size(); i++) {
+			
+		}
+	}
 
 	/**
 	 * @return the states
