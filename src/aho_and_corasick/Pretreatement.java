@@ -6,6 +6,7 @@ import java.util.Collections;
 public class Pretreatement {
 	private ArrayList<String> key_words;
 	ArrayList<State> states = new ArrayList<State>();
+	
 
 	/**
 	 * @param key_word
@@ -45,9 +46,21 @@ public class Pretreatement {
 	}
 	
 	public void  makeTree() {
-		this.states.get(0).setFather(null);
-		for (int i = 0; i < this.states.size(); i++) {
-			
+		State state = this.states.get(0);
+		
+		for (int i = 1; i < states.size(); i++) {
+			if(states.get(i).getPrefix().substring(0, state.getPrefix().length()) == state.getPrefix()) {
+				states.get(i).setFather(state);
+				state = this.states.get(i);
+				
+			} else {
+				states.get(i).setFather(state.getFather());
+				state = this.states.get(i);
+			}
+		}
+		
+		for (int i = 0; i < this.states.length(); i++) {
+			//TODO
 		}
 	}
 

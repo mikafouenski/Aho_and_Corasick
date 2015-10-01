@@ -10,6 +10,7 @@ public class Main {
 		arrayList.add("cocu");
 		Pretreatement pretreatement = new Pretreatement(arrayList);
 		pretreatement.makeState();
+		pretreatement.makeTree();
 		ArrayList<State> states = pretreatement.getStates();
 		for (int i = 0; i < states.size(); i++) {
 			System.out.println(states.get(i).getId().toString() + " " + states.get(i).getPrefix());
