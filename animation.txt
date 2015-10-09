@@ -1,0 +1,1 @@
+http://blog.ivank.net/aho-corasick-algorithm-in-as3.html
