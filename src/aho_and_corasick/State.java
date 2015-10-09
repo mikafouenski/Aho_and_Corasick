@@ -62,4 +62,10 @@ public class State {
 		this.sons.add(state);
 		state.setFather(this);
 	}
+	
+	public void print() {
+		for (int i = 0; i < this.sons.size(); i++) {
+			System.out.println(this.sons.get(i));
+		}
+	}
 }
