@@ -1,1 +1,5 @@
 /bin/
+src/aho_and_corasick/TestAhoCorasick.java
+src/aho_and_corasick/TestAll.java
+src/aho_and_corasick/TestStack.java
+src/aho_and_corasick/TestState.java
