@@ -10,11 +10,11 @@ public class Main {
 		
 		
 		AhoCorasick tree = new AhoCorasick();
-       tree.add("hello".getBytes(), "hello");
-       tree.add("world".getBytes(), "world");
+       tree.add("coucou".getBytes(), "coucou");
+       tree.add("cocu".getBytes(), "cocu");
        tree.prepare();
 
-       Iterator searcher = tree.search("hello world".getBytes());
+       Iterator searcher = tree.search("coucoucoucocu".getBytes());
        while (searcher.hasNext()) {
            SearchResult result = (SearchResult) searcher.next();
            System.out.println(result.getDisplay());

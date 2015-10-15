@@ -9,24 +9,13 @@ import java.util.Set;
 
 class State {
 
-	// Valeur barbare pour essayer d'optimiser la place, listes chainées si
-	// c'est plus de 3 de hauteur. Probleme de MEMOIRE(pas trop sur des liste chainées^^) ...
-	// pas plus de 256 etat car c'est a la mano :D
-	private static final int THRESHOLD_TO_USE_SPARSE = 3;
-
 	private int depth;
-	private EdgeList edgeList;
-	private State fail;
-	private Set display;
+	private DenseEdgeList edgeList = new DenseEdgeList();
+	private State fail = null;
+	private Set display = new HashSet();
 
 	public State(int depth) {
 		this.depth = depth;
-		/*if (depth > THRESHOLD_TO_USE_SPARSE)
-			this.edgeList = new SparseEdgeList();
-		else*/
-			this.edgeList = new DenseEdgeList();
-		this.fail = null;
-		this.display = new HashSet();
 	}
 
 	public State extend(byte b) {
