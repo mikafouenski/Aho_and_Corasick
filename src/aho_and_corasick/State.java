@@ -10,7 +10,7 @@ import java.util.Set;
 class State {
 
 	private int depth;
-	private DenseEdgeList edgeList = new DenseEdgeList();
+	private SonsList edgeList = new SonsList();
 	private State fail = null;
 	private Set display = new HashSet();
 

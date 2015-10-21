@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Liste de matches par un Iterator (un peu sale, a voir)
+ * Liste de matches par un Iterator.
  */
 
 class Searcher implements Iterator {
@@ -16,19 +16,22 @@ class Searcher implements Iterator {
 		this.currentResult = result;
 	}
 
+	/**
+	 * Boolean pour savoir s'il y a un suivant
+	 */
 	public boolean hasNext() {
 		return (this.currentResult != null);
 	}
 
+	/**
+	 * Revoit le suivant. Ou une execption s'il n'y a pas de suivant, voir au
+	 * dessus.
+	 */
 	public Object next() {
 		if (!hasNext())
 			throw new NoSuchElementException();
 		Object result = currentResult;
 		currentResult = tree.continueSearch(currentResult);
 		return result;
-	}
-
-	public void remove() {
-		throw new UnsupportedOperationException();
 	}
 }

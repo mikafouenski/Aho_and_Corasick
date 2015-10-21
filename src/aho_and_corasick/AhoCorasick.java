@@ -2,29 +2,28 @@ package aho_and_corasick;
 
 import java.util.Iterator;
 
+/**
+ * Classe principale pour le string matching de Aho et Corasick
+ */
 public class AhoCorasick {
-	private State root;
-	private boolean prepared;
-
-	public AhoCorasick() {
-		this.root = new State(0);
-		this.prepared = false;
-	}
+	private State root = new State(0);
+	private boolean prepared = false;
 
 	/**
-	 * Ajout d'un mot cle avec l'affichage qui correspond ( je ne sais pas trop pourquoi je l'ai fait comme ça..)
-	 * Pendant la recherche on vera les mots trouvé dans SearchResults.getDisplay().
+	 * Ajout d'un mot cle avec l'affichage qui correspond ( je ne sais pas trop
+	 * pourquoi je l'ai fait comme ça..) Pendant la recherche on vera les mots
+	 * trouvé dans SearchResults.getDisplay().
 	 */
 	public void add(byte[] keyword, Object display) {
 		if (this.prepared)
-			throw new IllegalStateException("can't add keywords after prepare() is called");
+			throw new IllegalStateException("Can't add keywords after prepare() is called");
 		State lastState = this.root.extendAll(keyword);
 		lastState.addDisplay(display);
 	}
 
 	/**
-	 * Wrap pour prepareFailTransitions();
-	 * ATTENTION il faut le mettre avant la recherche (YOU FOOL !)
+	 * Wrap pour prepareFailTransitions(); ATTENTION il faut le mettre avant la
+	 * recherche (YOU FOOL !)
 	 */
 	public void prepare() {
 		this.prepareFailTransitions();
@@ -32,7 +31,8 @@ public class AhoCorasick {
 	}
 
 	/**
-	 * Commencer la recherche et sortir l'iterateur des resultats. WRAP pour un peu de propreté
+	 * Commencer la recherche et sortir l'iterateur des resultats. WRAP pour un
+	 * peu de propreté
 	 */
 	public Iterator search(byte[] bytes) {
 		return new Searcher(this, this.startSearch(bytes));
@@ -40,7 +40,6 @@ public class AhoCorasick {
 
 	/**
 	 * Echec transitions de tout les etats sauf la racine.
-	 * Un peu obscur venant du psedo code du papier du prof...
 	 */
 	private void prepareFailTransitions() {
 		Stack<State> q = new Stack<State>();
@@ -68,7 +67,8 @@ public class AhoCorasick {
 	}
 
 	/**
-	 * Met les transitions de la racine vers elle meme, oui encore les 256 etats a la main ;)
+	 * Met les transitions de la racine vers elle meme, oui encore les 256 etats
+	 * a la main ;)
 	 */
 	private void prepareRoot() {
 		for (int i = 0; i < 256; i++)
@@ -90,7 +90,7 @@ public class AhoCorasick {
 	}
 
 	/**
-	 * Continue la recherche avec le resultat d'avant DOUTEUX
+	 * Continue la recherche avec le resultat d'avant.
 	 */
 	SearchResult continueSearch(SearchResult lastResult) {
 		byte[] bytes = lastResult.bytes;

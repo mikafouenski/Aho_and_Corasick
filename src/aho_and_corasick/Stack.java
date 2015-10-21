@@ -1,8 +1,10 @@
 package aho_and_corasick;
 
 import java.util.Vector;
+
 /**
- * Pille pour stocker les valeurs equivalement a la Queue mais moins prise de tête
+ * Pille pour stocker les valeurs equivalement a la Queue mais moins prise de
+ * tête
  */
 public class Stack<T> {
 	Vector<T> vector = new Vector<T>();
