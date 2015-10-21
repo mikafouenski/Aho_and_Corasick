@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Writer;
 import java.nio.file.Files;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,9 +28,6 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import aho_and_corasick.AhoCorasick;
-import aho_and_corasick.SearchResult;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -57,7 +53,6 @@ public class GUIAhoCorasick extends JFrame {
 	private JTextField textLookFor;
 	private JTextArea textFound;
 	private static JTextArea jtext;
-	private AhoCorasick tree = new AhoCorasick();
 
 	/**
 	 * Launch the application.
@@ -228,23 +223,15 @@ public class GUIAhoCorasick extends JFrame {
 
 	private void Add(){
 		String word = textLookFor.getText();
-		tree.add(word.getBytes(), word);
+		aho_and_corasick.Main.tree.add(word.getBytes(), word);
 
 		textFound.append(word + "\n\n");
 		textLookFor.setText(null);
 	}
 
 	private void Search(){
-		tree.prepare();
-		String text = jtext.getText();
-
-		Iterator searcher = tree.search(text.getBytes());
-		while (searcher.hasNext()) {
-			SearchResult result = (SearchResult) searcher.next();
-			System.out.println(result.getDisplay());
-			System.out.println("Found at index: " + result.getLastIndex());
-			Result(result.getDisplay().toString(), result.getLastIndex());
-		}
+		aho_and_corasick.Main.text = jtext.getText();
+		aho_and_corasick.Main.main(null);
 	}
 
 	public static void Result(String result, int index){
@@ -259,6 +246,8 @@ public class GUIAhoCorasick extends JFrame {
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
+
+		
 	}
 }
