@@ -221,8 +221,6 @@ public class GUIAhoCorasick extends JFrame {
 			System.out.println("nope !");
 		}
 
-		//aho_and_corasick.Main.searcher = aho_and_corasick.Main.tree.search(b);
-
 		return Dialog;
 	}
 
