@@ -18,6 +18,9 @@ class State {
 		this.depth = depth;
 	}
 
+	/**
+	 * ajout d'un byte
+	 */
 	public State extend(byte b) {
 		if (this.edgeList.get(b) != null)
 			return this.edgeList.get(b);
@@ -26,6 +29,9 @@ class State {
 		return nextState;
 	}
 
+	/**
+	 * ajout d'un lot d'elements.
+	 */
 	public State extendAll(byte[] bytes) {
 		State state = this;
 		for (int i = 0; i < bytes.length; i++) {
@@ -38,8 +44,8 @@ class State {
 	}
 
 	/**
-	 * Retourne la taille comme si la racine est l'element courant, N'utilise
-	 * pas ca après .prepare() (you fool !)
+	 * Retourne la taille à partir de l'element courant, N'utilise pas ca après
+	 * .prepare() (you fool !)
 	 */
 	public int size() {
 		byte[] keys = edgeList.keys();
