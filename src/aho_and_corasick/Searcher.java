@@ -34,4 +34,10 @@ class Searcher implements Iterator {
 		currentResult = tree.continueSearch(currentResult);
 		return result;
 	}
+
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
 }
