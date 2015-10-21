@@ -10,7 +10,7 @@ import java.util.Set;
 class State {
 
 	private int depth;
-	private SonsList edgeList = new SonsList();
+	private SonsList sonsList = new SonsList();
 	private State fail = null;
 	private Set display = new HashSet();
 
@@ -22,10 +22,10 @@ class State {
 	 * ajout d'un byte
 	 */
 	public State extend(byte b) {
-		if (this.edgeList.get(b) != null)
-			return this.edgeList.get(b);
+		if (this.sonsList.get(b) != null)
+			return this.sonsList.get(b);
 		State nextState = new State(this.depth + 1);
-		this.edgeList.put(b, nextState);
+		this.sonsList.put(b, nextState);
 		return nextState;
 	}
 
@@ -35,8 +35,8 @@ class State {
 	public State extendAll(byte[] bytes) {
 		State state = this;
 		for (int i = 0; i < bytes.length; i++) {
-			if (state.edgeList.get(bytes[i]) != null)
-				state = state.edgeList.get(bytes[i]);
+			if (state.sonsList.get(bytes[i]) != null)
+				state = state.sonsList.get(bytes[i]);
 			else
 				state = state.extend(bytes[i]);
 		}
@@ -48,23 +48,23 @@ class State {
 	 * .prepare() (you fool !)
 	 */
 	public int size() {
-		byte[] keys = edgeList.keys();
+		byte[] keys = sonsList.keys();
 		int result = 1;
 		for (int i = 0; i < keys.length; i++)
-			result += edgeList.get(keys[i]).size();
+			result += sonsList.get(keys[i]).size();
 		return result;
 	}
 
 	public State get(byte b) {
-		return this.edgeList.get(b);
+		return this.sonsList.get(b);
 	}
 
 	public void put(byte b, State s) {
-		this.edgeList.put(b, s);
+		this.sonsList.put(b, s);
 	}
 
 	public byte[] keys() {
-		return this.edgeList.keys();
+		return this.sonsList.keys();
 	}
 
 	public State getFail() {
