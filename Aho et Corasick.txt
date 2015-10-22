@@ -1,0 +1,10 @@
+Aho et Corasick
+Le programme est réalisé en JAVA 7, il implemente une version orientée en objet du fameux algorithme d'Aho et Corasick “ Efficient String Matching : An Aid to Bibliographic Search”.
+Le programme ce compose de la manière suivante : 
+- AhoCorasick.java : qui est l'enttrée principale du projet. Cette classe contient notament la racine de notre arbre, et sert à “piloter” l'automate.
+- State.java : qui représente un état mais aussi un nœud de l'arbre. L'etat possède une liste de fils “SonsList” de 256 élements et une redirection vers son état d'echec.
+- SonsList.java : représente la liste de fils. Cette liste est un tableau de 256 éléments : 256 est le nombre d'entrée de la table ascii. Lors du passage de parrametre, chaque charactère est passer sous forme de Byte qui coorespond a ça valeur binaire (ex 'a' = 97). Cette valeur est aussi l'indice la lettre.
+Exemple : la lettre filles 'a' est a l'indice 97 (valeur ascii) du tableau SonsList.
+Cette methode est en réalité netement plus rapide que de faire un ArrayList et de faire une recherche parmi les valeurs, car on ne réalise qu'un acces a un tableau ! (On effectue un et binaire avec FF pour vérifier que l'on dans la table ascii et ainsi prevenir d'un seg. Fault.)
+- Searcher.java : qui implemente un “Iterator” qui va contenir la liste de résultat pour le matching, cette classe itère sur la classe “SearchResult”.
+- SearchResult.java : qui représente un résultat de recherche. Contient la dernirère postion dans le texte du resultat.
